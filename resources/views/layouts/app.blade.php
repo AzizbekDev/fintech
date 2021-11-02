@@ -43,7 +43,7 @@
                     <div class="header-content">
                         <h3 class="header-title">Farzandingiz kelajagini <br> biz bilan quring!</h3>
                         <div class="header-btn align-items-center">
-                            <a href="#" class="btn" type="button">Ro'yxatdan o'tish</a>
+                            <a href="#contact_us" class="btn page-scroll" type="button">Ro'yxatdan o'tish</a>
                         </div>
                     </div> <!-- header content -->
                 </div>
@@ -70,7 +70,6 @@
 
 <!--====== Bootstrap js ======-->
 <script src="{{ asset('js/bootstrap.min.js') }}"></script>
-<script src="{{ asset('js/popper.min.js') }}"></script>
 
 <!--====== Scrolling Nav js ======-->
 <script src="{{ asset('js/jquery.easing.min.js') }}"></script>

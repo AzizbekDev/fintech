@@ -139,6 +139,7 @@ p {
   .navgition.sticky {
     position: fixed;
     background-color: #FFFFFF;
+    width: 100%;
     -webkit-box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.16);
     -moz-box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.16);
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.16);
@@ -323,6 +324,7 @@ p {
       }
       @media (max-width: 767px) {
         .header-hero .header-content .header-title {
+          width: 320px;
           top: 250px;
           font-size: 20px;
           line-height: 30px;}}
