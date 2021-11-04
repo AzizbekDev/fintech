@@ -71,28 +71,30 @@
             <div class="row justify-content-center">
                 <div class="col-md-4">
                     <img class="course-tumb" src="{{ asset('images/first.png') }}" alt="html,css">
-                    <h3 class="course-title">Frontend</h3>
+                    <h3 class="course-title"><a href="#contact_us" class="scroll-page" type="button">Frontend</a></h3>
                 </div>
                 <div class="col-md-4">
                     <img class="course-tumb" src="{{ asset('images/second.png') }}" alt="html,css">
-                    <h3 class="course-title">Beckend</h3>
+                    <h3 class="course-title"><a href="#contact_us" class="scroll-page" type="button">Backend</a></h3>
                 </div>
                 <div class="col-md-4">
                     <img class="course-tumb" src="{{ asset('images/third.png') }}" alt="html,css">
-                    <h3 class="course-title">Sun’iy intelekt</h3></div>
+                    <h3 class="course-title"><a href="#contact_us" class="scroll-page" type="button">Sun’iy intelekt</a></h3>
+                </div>
             </div><!-- row -->
             <div class="row justify-content-center">
                 <div class="col-md-4">
                     <img class="course-tumb" src="{{ asset('images/four.png') }}" alt="html,css">
-                    <h3 class="course-title">Mobil ilova</h3>
+                    <h3 class="course-title"><a href="#contact_us" class="scroll-page" type="button">Mobil ilova</a></h3>
                 </div>
                 <div class="col-md-4">
                     <img class="course-tumb" src="{{ asset('images/five.png') }}" alt="html,css">
-                    <h3 class="course-title">Design</h3>
+                    <h3 class="course-title"><a href="#contact_us" class="scroll-page" type="button">Design</a></h3>
                 </div>
                 <div class="col-md-4">
                     <img class="course-tumb" src="{{ asset('images/six.png') }}" alt="html,css">
-                    <h3 class="course-title">SMM</h3></div>
+                    <h3 class="course-title"><a href="#contact_us" class="scroll-page" type="button">SMM</a></h3>
+                </div>
             </div><!-- row -->
         </div> <!-- conteiner -->
     </section>
@@ -162,36 +164,60 @@
             <div class="row justify-content-center">
                 <div class="col-lg-8">
                     <div class="contact-form">
-                        <form id="contact-form" action="#" method="post" data-toggle="validator">
+                        @if(Session::has('success'))
+                            <div class="alert alert-success">
+                                {{Session::get('success')}}
+                            </div>
+                        @endif
+                        <form id="contact-form" action="{{ route('fintech.register')}}" method="post" data-toggle="validator">
+                            @csrf
                             <div class="row">
                                 <div class="col-md-12">
-                                    <div class="single-form form-group">
+                                    <div class="single-form form-group warning">
                                         <label for="fullname">Ismingiz</label>
-                                        <input type="text" name="fullname" id="fullname" placeholder="To'liq ismingiz va familiyaniz" data-error="Fullname is required." required="required">
-                                        <div class="help-block with-errors"></div>
+                                        <input type="text" name="fullname" id="fullname"
+                                               placeholder="To'liq ismingiz va familiyaniz"
+                                               value="{{ old('fullname') }}" required="required">
+                                        @if ($errors->has('fullname'))
+                                            <div class="error">
+                                                <div class="help-block with-errors">{{ $errors->first('fullname') }}</div>
+                                            </div>
+                                        @endif
                                     </div> <!-- single form -->
                                     <div class="single-form form-group">
                                         <label for="course_type">Kurs yo'nalishi</label>
-                                        <select name="course_type" id="course_type" required="required">
+                                        <select name="course_id" id="course_type" required="required">
                                             <option value="">Kurs yo'nalishini tanlang</option>
-                                            <option value="frontend">Frontend</option>
-                                            <option value="backend">Beckend</option>
-                                            <option value="graphic_design">Grafik dizayn</option>
-                                            <option value="artificial_intelligence">Sun'iy intellekt </option>
-                                            <option value="mobile_application">Mobil ilova</option>
-                                            <option value="smm">SMM</option>
+                                            @foreach($courses as $course)
+                                                <option value="{{ $course->id }}">{{ $course->name }}</option>
+                                            @endforeach
                                         </select>
-                                        <div class="help-block with-errors"></div>
+                                        @if ($errors->has('course_id'))
+                                            <div class="error">
+                                                <div class="help-block with-errors">{{ $errors->first('course_id') }}</div>
+                                            </div>
+                                        @endif
                                     </div>
                                     <div class="single-form form-group">
                                         <label for="phone">Telefon raqamingiz</label>
-                                        <input type="text" name="phone" id="phone" placeholder="+99 8" data-error="Phone is required." required="required">
-                                        <div class="help-block with-errors"></div>
+                                        <input type="text" name="phone" id="phone" placeholder="XX XXX XX XX"
+                                               value="{{ old('phone') }}" required="required" maxlength="9">
+                                        @if ($errors->has('phone'))
+                                            <div class="error">
+                                                <div class="help-block with-errors">{{ $errors->first('phone') }}</div>
+                                            </div>
+                                        @endif
                                     </div> <!-- single form -->
                                     <div class="single-form form-group">
                                         <label for="source">Biz haqimizda qayerdan bildingiz</label>
-                                        <input type="text" name="source" id="source" placeholder="Telegram, Instagram, boshqa (qayerdan bilganingizni yozib qoldiring...))" data-error="Phone is required." required="required">
-                                        <div class="help-block with-errors"></div>
+                                        <input type="text" name="source" id="source"
+                                               placeholder="Telegram, Instagram, boshqa (qayerdan bilganingizni yozib qoldiring...))"
+                                               value="{{ old('source') }}" required="required">
+                                        @if ($errors->has('source'))
+                                            <div class="error">
+                                                <div class="help-block with-errors">{{ $errors->first('source') }}</div>
+                                            </div>
+                                        @endif
                                     </div> <!-- single form -->
                                 </div>
                                 <p class="form-message"></p>

@@ -40,12 +40,11 @@ $(function() {
     
     
     //===== Section Menu Active
-    
     var scrollLink = $('.page-scroll');
-        // Active link switching
-        $(window).scroll(function() {
-        var scrollbarLocation = $(this).scrollTop();
-        scrollLink.each(function() {
+    // Active link switching
+    $(window).scroll(function() {
+    var scrollbarLocation = $(this).scrollTop();
+    scrollLink.each(function() {
         if ($(this.hash).length) {
           var offset = $(this.hash).offset().top;
           var sectionOffset = offset- 90;
@@ -56,7 +55,6 @@ $(function() {
         }
         });
     });
-    
     
     //====== Magnific Popup
     
@@ -76,7 +74,16 @@ $(function() {
             $('.back-to-top').fadeOut(200)
         }
     });
-    
+    // Scroll when has in urlbar
+    if (window.location.hash) {
+        var hash = window.location.hash;
+
+        if ($(hash).length) {
+            $('html, body').animate({
+                scrollTop: $(hash).offset().top - 85
+            }, 1200, "easeInOutExpo");
+        }
+    }
     
     //Animate the scroll to yop
     $('.back-to-top').on('click', function(event) {
@@ -86,23 +93,5 @@ $(function() {
             scrollTop: 0,
         }, 1500);
     });
-    
-    
-    //===== 
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
 });

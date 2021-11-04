@@ -19,6 +19,7 @@ $(function() {
                 $('html, body').animate({
                     scrollTop: (target.offset().top -85)
                 }, 1200, "easeInOutExpo");
+                location.hash = target.selector;
                 return false;
             }
         }
